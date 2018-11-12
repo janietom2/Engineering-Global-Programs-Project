@@ -3,10 +3,11 @@ session_start();
 
 $GLOBALS['config'] = array(
 	'mysql' => array(
-			'host' => 
-			'username' => 
-			'password' => 
-			'db' => 'techcenter_dashboard'
+			'host' => 'mysql', 
+			'port' => 4306,
+			'username' => 'root', 
+			'password' => 'rootpassword', 
+			'db' => 'global_programs'
 		),
 	'remember' => array(
 			'cookie_name' => 'hash',
@@ -20,9 +21,9 @@ $GLOBALS['config'] = array(
 	);
 
 spl_autoload_register(function($class) {
-	require_once '../classes/'. $class . '.php';
+	require_once './classes/'. $class . '.php';
 });
 
-require_once '../functions/sanitize.php';
+require_once './functions/sanitize.php';
 
 ?>

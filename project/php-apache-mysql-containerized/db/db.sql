@@ -1,0 +1,45 @@
+CREATE TABLE IF NOT EXISTS `Person`(
+    pid INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    pfname VARCHAR(255) NOT NULL,
+    plname VARCHAR(255) NOT NULL,
+    pmname VARCHAR(255) NOT NULL,
+    pemail VARCHAR(255) NOT NULL,
+    ppwd VARCHAR (255) NOT NULL,
+    salt BLOB NOT NULL,
+    pacceslvl INT(2)
+)
+
+CREATE TABLE IF NOT EXISTS `Program`(
+    prid INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    prn_apps INT(11) NOT NULL,
+    prfund_agency VARCHAR(11) NOT NULL,
+    prsurvey VARCHAR(255) NOT NULL,
+    prdescription VARCHAR(255) NOT NULL,
+    prcost FLOAT NOT NULL,
+    prlocation VARCHAR(255) NOT NULL,
+    preligibility VARCHAR(255) NOT NULL,
+    prdateline VARCHAR(255) NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS `Application`(
+    apid INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    pid INT(11) NOT NULL,
+    prid INT(11) NOT NULL,
+    apessay VARCHAR(255) NOT NULL,
+    aplinkedin VARCHAR(255) NOT NULL,
+    apdemo VARCHAR (255) NOT NULL,
+    apcontact VARCHAR(255) NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS `Media`(
+    mid INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    pid INT(11) NOT NULL,
+    apid INT(11) NOT NULL,
+    mfile VARCHAR(255) NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS `Reports`(
+    reid INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    recontent VARCHAR(255) NOT NULL,
+    prid INT(11) NOT NULL
+)

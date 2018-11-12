@@ -30,23 +30,23 @@ class User {
 	}
 
 	public function create($fields = array()) {
-		if(!$this->_db->insert('dash_users', $fields)) {
+		if(!$this->_db->insert('Person', $fields)) {
 			throw new Exception('Sorry mistakes were made. Error creating your account.' . print_r($fields));
 		}
 	}
 
 	public function update($where, $id, $fields = array()) {
-		if(!$this->_db->update('dash_users', $where, $id, $fields)) {
+		if(!$this->_db->update('Person', $where, $id, $fields)) {
 			throw new Exception('Sorry mistakes were made. Error Updating your account.' . print_r($fields));
 		}
 	}
 
-	private function find($user = null){
-		if($user) {
+	private function find($email = null){
+		if($email) {
 
-			$field = (is_numeric($user)) ? 'id' : 'username';
-			$data = $this->_db->get('dash_users', array(
-				$field, '=', $user
+			$field = (is_numeric($user)) ? 'pid' : 'pemail';
+			$data = $this->_db->get('Person', array(
+				$field, '=', $email
 			));
 
 		   if($data->count()) {
@@ -58,27 +58,17 @@ class User {
 		return false;
 	}
 
-	public function login($username = null, $password = null) {
-		$user = $this->find($username);
+	public function login($email = null, $password = null) {
+		$user = $this->find($email);
 
 		if($user) {
-			if($this->data()->password === Hash::make($password, $this->data()->salt)) {
-				Session::put($this->_sessionName, $this->data()->id);
+			if($this->data()->ppwd === Hash::make($password, $this->data()->salt)) {
+				Session::put($this->_sessionName, $this->data()->pid);
+				echo Session::get($this->_sessionName);
 				return true;
 			}
 		}
 
-		return false;
-	}
-
-	public function checkByPin($username = null, $pin = null) {
-		$user = $this->find($username);
-
-		if($user) {
-			if($this->data()->pin === Hash::make($pin, $this->data()->salt_pin)) {
-				return true;
-			}
-		}
 		return false;
 	}
 
@@ -95,7 +85,7 @@ class User {
 	}
 
 	public function rank() {
-		return $this->data()->rank;
+		return $this->data()->pacceslvl;
 	}
 	public function data() {
 		return $this->_data;
