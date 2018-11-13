@@ -1,4 +1,12 @@
-RewriteEngine on
+# RewriteEngine on
+# RewriteBase /
+
+# RewriteCond $1 !^(index\.php|css|gfx|js|swf|robots\.txt|favicon\.ico)
+# # RewriteCond $1 !^(favicon\.ico|favicon\.png|media|robots\.txt|crossdomain\.xml|css|js)
+# RewriteRule ^(.*)$ /index.php/$1 [L]
+
+RewriteEngine On
 RewriteBase /
-RewriteCond $1 !^(index\.php|css|gfx|js|swf|robots\.txt|favicon\.ico)
-RewriteRule ^(.*)$ /index.php/$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php [L]

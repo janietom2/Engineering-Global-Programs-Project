@@ -1,35 +1,44 @@
 <?php
+
+    if(isLogged()){
+        Session::flash('log', "You have logged in!");
+        Redirect::to('/');
+    }
+
     get_header();
     get_content();
 
-    $user = new User();
-
-    echo $user->data()->pid;
-    echo "test";
 ?>
 
     <div class="row">
-        <div class="col-3 offset-md-4 login-holder">
-            <p>Please login using your credentials</p>
-            <form method="POST" action="/verifycred">
-                
-                <div class="form-group">
-                    <label for="email">Email: </label>
-                    <input class="form-control" type="text" id="email" name="email">
-                </div>
+        <div class="col-4 offset-md-4 login-holder">
+            
+            <div class="login-message">
+                <p class="text-center">Please login using your credentials</p>
+            </div>
 
-                <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input class="form-control" type="password" id="pwd" name="pwd">
-                </div>
+            <div class="login-info">
+                <form method="POST" action="/login">
+                    
+                    <div class="form-group">
+                        <label for="email">Email: </label>
+                        <input class="form-control" type="text" id="email" name="email">
+                    </div>
 
-                <input type="hidden" name="token" value=<?php echo Token::generate(); ?>>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input class="form-control" type="password" id="pwd" name="pwd">
+                    </div>
 
-                <div class="form-group">
-                    <input type="submit" value="login" name="login" class="btn btn-default">
-                </div>
+                    <input type="hidden" name="token" value=<?php echo Token::generate(); ?>>
 
-            </form>
+                    <div class="form-group">
+                        <button type="submit" name="login" class="btn btn-primary">login</button>
+                    </div>
+
+                </form>
+            </div>    
+
         </div>
     </div>
 

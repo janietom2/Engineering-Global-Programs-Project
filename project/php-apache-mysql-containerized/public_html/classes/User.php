@@ -41,12 +41,12 @@ class User {
 		}
 	}
 
-	private function find($email = null){
-		if($email) {
+	private function find($user = null){
+		if($user) {
 
 			$field = (is_numeric($user)) ? 'pid' : 'pemail';
 			$data = $this->_db->get('Person', array(
-				$field, '=', $email
+				$field, '=', $user
 			));
 
 		   if($data->count()) {
@@ -64,7 +64,6 @@ class User {
 		if($user) {
 			if($this->data()->ppwd === Hash::make($password, $this->data()->salt)) {
 				Session::put($this->_sessionName, $this->data()->pid);
-				echo Session::get($this->_sessionName);
 				return true;
 			}
 		}

@@ -7,5 +7,3 @@ RUN apk update; \
 
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo pdo_mysql
-
-ADD php.ini /usr/local/etc/php

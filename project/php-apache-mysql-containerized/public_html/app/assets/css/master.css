@@ -1,0 +1,73 @@
+/**
+* Master CSS
+**/
+
+/** Bootstrap Override **/
+.btn-primary {
+    background-color: #FF8201 !important;
+    border-color: #FF8201 !important;
+}
+
+.col-4{
+    padding: 0 !important;
+}
+
+/** MAIN CONTAINER **/
+
+.main-container {
+    margin-top: 40px;
+}
+
+/** HEADER **/
+
+#header{
+    background-color: #041D42;
+    color: white;
+    padding: 10px;
+    height: 150;
+}
+
+#header > p {
+    padding-top: 15px;
+    font-family: "Tungsten A", "Tungsten B", "Open Sans", sans-serif;
+    font-weight: 600 !important;
+    font-size: 45px !important;
+}
+
+/** LOGIN **/
+
+.login-holder{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding: 0;
+    border: 1px solid #cccccc;
+}
+
+.login-message{
+    background-color: #041D42;
+    color: white;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.login-info {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/** NAV **/
+
+.holder-nav{
+    background-color: #343a40!important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/** FOOTER **/
+
+#footer {
+    background-color: #041D42;
+    color: white;
+    height: 150px;
+    margin-top: 100px;
+}

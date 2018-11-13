@@ -1,7 +1,5 @@
 <?php
-
 get_init();
-$user = new User();
 
 function needs_login(){
     $user = new User();

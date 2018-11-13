@@ -1,9 +1,16 @@
 <?php 
 get_init();
 
-
-if(input::exists()){
+if(input::exists()) {
     check_login();
+}
+
+function isLogged(){
+  $user = new User();
+  if($user->isLoggedIn()){
+      return True;
+  }
+  return False;
 }
 
 function check_login(){
@@ -29,7 +36,7 @@ function check_login(){
       
             if($login){
               Session::flash('log', "You have logged in!");
-              Redirect::to('/index');
+              Redirect::to('/');
             }
             else{
                 echo "<div class='alert alert-danger fade in block-inner'>
@@ -47,3 +54,5 @@ function check_login(){
             }
         }
 }
+
+?>

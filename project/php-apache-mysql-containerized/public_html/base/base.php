@@ -12,6 +12,10 @@ function get_content(){
     require_once 'content.php';
 }
 
+function get_navbar(){
+    require_once 'navbar.php';
+}
+
 function get_footer(){
     require_once 'footer.php';
 }
