@@ -22,6 +22,16 @@ function ifAdmin() {
     return ($user->data()->pacceslvl < 3) ? true : false;
 }
 
+function alreadyApplied($prid) {
+    $db = DB::getInstance();
+
+    $qry = $db->get('program', array(
+        'prid', '=', $id
+    ));
+
+    return ($qry->count()) ? true : false;
+}
+
 function view_programs(){
     $db = DB::getInstance();
 
@@ -32,6 +42,16 @@ function view_programs(){
     }
 
     return $query->results();
+}
+
+function get_program($id){
+    $db = DB::getInstance();
+
+    $qry = $db->get('program', array(
+        'prid', '=', $id
+    ));
+
+    return ($qry->count()) ? $qry->first() : null;
 }
 
 function create_new() {
@@ -55,7 +75,7 @@ function create_new() {
 
                             if ($validation->passed()) {
                                 try{
-                                    $insert_pro = $db->insert('program', array(
+                                    $insert_pro = $db->insert('Program', array(
                                         'prn_apps' => input::get('prn_apps'),
                                         'prfund_agency' => input::get('prfund_agency'),
                                         'prsurvey' => input::get('prsurvey'),
@@ -90,15 +110,6 @@ function program_id(){
     return $pid;
 }
 
-function get_program($id){
-    $db = DB::getInstance();
-
-    $qry = $db->get('program', array(
-        'prid', '=', $id
-    ));
-
-    return ($qry->count()) ? $qry->first() : null;
-}
 
 function update_program($pid) {
 
@@ -112,7 +123,7 @@ function update_program($pid) {
 
                             if ($validation->passed()) {
                                 try{
-                                    $update = $db->update('program', 'prid', $pid, array(
+                                    $update = $db->update('Program', 'prid', $pid, array(
                                         'prn_apps' => input::get('prn_apps'),
                                         'prfund_agency' => input::get('prfund_agency'),
                                         'prsurvey' => input::get('prsurvey'),

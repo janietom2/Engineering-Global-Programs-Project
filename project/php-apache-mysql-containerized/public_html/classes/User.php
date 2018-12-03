@@ -30,13 +30,13 @@ class User {
 	}
 
 	public function create($fields = array()) {
-		if(!$this->_db->insert('Person', $fields)) {
+		if(!$this->_db->insert('person', $fields)) {
 			throw new Exception('Sorry mistakes were made. Error creating your account.' . print_r($fields));
 		}
 	}
 
 	public function update($where, $id, $fields = array()) {
-		if(!$this->_db->update('Person', $where, $id, $fields)) {
+		if(!$this->_db->update('person', $where, $id, $fields)) {
 			throw new Exception('Sorry mistakes were made. Error Updating your account.' . print_r($fields));
 		}
 	}
@@ -45,7 +45,7 @@ class User {
 		if($user) {
 
 			$field = (is_numeric($user)) ? 'pid' : 'pemail';
-			$data = $this->_db->get('Person', array(
+			$data = $this->_db->get('person', array(
 				$field, '=', $user
 			));
 

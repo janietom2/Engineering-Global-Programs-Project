@@ -1,5 +1,6 @@
 <?php
     needs_login();
+    requires_admin();
     create_new();
     get_header();
     get_navbar();

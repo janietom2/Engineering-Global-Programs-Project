@@ -31,13 +31,25 @@ switch ($request) {
         require_once './controllers/programs.php';
         require __DIR__ . '/app/views/programs.php';
         break;
+    case '/program':
+        require_once './controllers/programs.php';
+        require __DIR__ . '/app/views/program.php';
+        break;
     case '/new_program':
         require_once './controllers/programs.php';
-        require __DIR__ . '/app/views/new_programs.php';
+        require __DIR__ . '/app/views/new_program.php';
         break;
     case '/edit_program':
         require_once './controllers/programs.php';
         require __DIR__ . '/app/views/edit_program.php';
+        break;
+    case '/application':
+        require_once './controllers/applications.php';
+        require __DIR__ . '/app/views/application.php';
+        break;
+    case '/new_application':
+        require_once './controllers/applications.php';
+        require __DIR__ . '/app/views/new_application.php';
         break;
     case '/index.php':
         require __DIR__ . '/app/views/404.php';
