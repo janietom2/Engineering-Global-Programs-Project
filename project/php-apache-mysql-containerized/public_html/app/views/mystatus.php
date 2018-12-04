@@ -23,7 +23,7 @@
             <tr>
                 <td><?php echo $program->apid;  ?></td>
                 <td><?php echo $program->prid;  ?></td>
-                <td><?php echo $program->apessay;  ?></td>
+                <td><a target="_blank" href="./upload/<?=$program->apessay?>"><?php echo $program->apessay;  ?></a></td>
                 <td><?php echo $program->aplinkedin;  ?></td>
                 <td><?php echo $program->apcontact;  ?></td>
                 <td><?php echo get_status($program->status);  ?></td>

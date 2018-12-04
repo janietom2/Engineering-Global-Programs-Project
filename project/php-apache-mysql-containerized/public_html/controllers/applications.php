@@ -104,6 +104,14 @@ function getApplication($id){
 
 }
 
+function getMediaFiles($id) {
+    $db = DB::getInstance();
+
+    $qry = $db->query("SELECT * FROM media WHERE apid=$id");
+
+    return ($qry->count()) ? $qry->results() : null;
+}
+
 function get_student_status($pid) {
     $db = DB::getInstance();
 
@@ -136,11 +144,11 @@ function create_new($pid, $prid) {
                             ));
 
                             $errors= array();
-                            $file_name = $_FILES['image']['name'];
-                            $file_size =$_FILES['image']['size'];
-                            $file_tmp =$_FILES['image']['tmp_name'];
-                            $file_type=$_FILES['image']['type'];
-                            $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+                            $file_name = $_FILES['essay']['name'];
+                            $file_size =$_FILES['essay']['size'];
+                            $file_tmp =$_FILES['essay']['tmp_name'];
+                            $file_type=$_FILES['essay']['type'];
+                            $file_ext=strtolower(end(explode('.',$_FILES['essay']['name'])));
                             $expensions= array("jpeg","jpg","png","pdf");
                             
                             if(in_array($file_ext,$expensions)=== false){
@@ -151,9 +159,10 @@ function create_new($pid, $prid) {
                                 $errors[]='File size must be excately 2 MB';
                             }
                             
+                            $newfile_name=uniqid().'.'.$file_ext;
+
                             if(empty($errors)==true){
-                                move_uploaded_file($file_tmp,"upload/".$file_name);
-                                //    echo "Success";
+                                move_uploaded_file($file_tmp,"./upload/".$newfile_name);
                             }else{
                                 print_r($errors);
                                 die();
@@ -164,7 +173,7 @@ function create_new($pid, $prid) {
                                     $insert_pro = $db->insert('application', array(
                                         'pid' => $pid,
                                         'prid' => $prid,
-                                        'apessay' => "file",
+                                        'apessay' => $newfile_name,
                                         'aplinkedin' => input::get('aplinkedin'),
                                         'apcontact' => input::get('apcontact'),
                                     ));
@@ -172,6 +181,48 @@ function create_new($pid, $prid) {
                                 } catch(Exeception $e){
                                     die($e->getMessage());
                                 }
+
+                                $lastId = $db->last("apid");
+
+                                for($i = 0; $i < 3; $i++) {
+                                    $errors= array();
+                                    $file_name = $_FILES['images']['name'][$i];
+                                    $file_size =$_FILES['images']['size'][$i];
+                                    $file_tmp =$_FILES['images']['tmp_name'][$i];
+                                    $file_type=$_FILES['images']['type'][$i];
+                                    $file_ext=strtolower(end(explode('.',$_FILES['images']['name'][$i])));
+                                    $expensions= array("jpeg","jpg","png","pdf");
+                                    
+                                    if(in_array($file_ext,$expensions)=== false){
+                                        $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+                                    }
+                                    
+                                    if($file_size > 2097152){
+                                        $errors[]='File size must be excately 2 MB';
+                                    }
+                                    
+                                    $newfile_name=uniqid().'.'.$file_ext;
+        
+                                    if(empty($errors)==true){
+                                        move_uploaded_file($file_tmp,"./upload/".$newfile_name);
+                                        try{
+                                            $insert_pro = $db->insert('media', array(
+                                                'pid' => $pid,
+                                                'apid' => $lastId,
+                                                'mfile' => $newfile_name,
+                                            ));
+        
+                                        } catch(Exeception $e){
+                                            die($e->getMessage());
+                                        }
+                                        
+                                    }else{
+                                        print_r($errors);
+                                        die();
+                                    }
+                                }
+
+
                                 Redirect::to('/new_application?pid='.$prid.'');
 
                             } else {

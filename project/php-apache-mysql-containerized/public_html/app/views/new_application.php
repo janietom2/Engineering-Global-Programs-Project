@@ -31,8 +31,21 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="prcost"> Essay and Images:</label>
-                            <input class="form-control" type="file" name="image">
+                            <label for="essay"> Essay Only:</label>
+                            <input class="form-control" type="file" name="essay">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prcost"> Image:</label>
+                            <input class="form-control" type="file" name="images[]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prcost"> Image:</label>
+                            <input class="form-control" type="file" name="images[]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prcost"> Image:</label>
+                            <input class="form-control" type="file" name="images[]">
                         </div>
 
                         <input type="hidden" name="token" value="<?php echo Token::generate() ?>">
@@ -42,7 +55,7 @@
             </form>
         <?php else: ?>
             <h1>Application for: <?= $program->prfun_agency ?></h1>
-            <p>You already applied!</p> <p>You can see your application status <a href="#">here</a></p>
+            <p>You already applied!</p> <p>You can see your application status <a href="/mystatus">here</a></p>
         <?php endif; ?>
         </div>
     </div>

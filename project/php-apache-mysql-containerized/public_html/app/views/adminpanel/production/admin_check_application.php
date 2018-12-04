@@ -9,7 +9,7 @@
     <?php $program = getApplication($id); ?>
     <h1 class="program-title"><?php echo $program->prfun_agency; ?></h1>
     <div class="row program-info">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <ul>
                 <li><b>Student Name:</b></li>
                  - <?= $program->pfname." ".$program->plname ?>
@@ -24,7 +24,7 @@
 
             </ul>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <ul>
                  <li><b>GPA:</b></li>
                  - <?= $program->pgpa ?>
@@ -39,6 +39,17 @@
 
             </ul>
         </div>
+
+        <div class="col-md-3">
+            <h3>Media Files</h3>
+            <ul>
+            <?php foreach(getMediaFiles($id) as $file): ?>
+                <li><a target="_blank" href="./upload/<?=$file->mfile ?>" ><?= $file->mfile; ?></a></li>
+            <?php endforeach; ?>
+            </ul>
+        </div>
+
+
     </div>
 
     <div class="row">
