@@ -9,10 +9,23 @@ function needs_login(){
       }
 }
 
+function requires_admin(){
+    $user = new User();
+       if($user->data()->pacceslvl > 3){
+        Session::flash('notAdmin', 'Forbiden');
+        Redirect::to('/login');
+       }
+}
+
+function ifAdmin() {
+    $user = new User();
+    return ($user->data()->pacceslvl < 3) ? true : false;
+}
+
 function view_programs(){
     $db = DB::getInstance();
 
-    $query = $db->query("SELECT * FROM Program");
+    $query = $db->query("SELECT * FROM program");
 
     if(!$query->count()){
         return null;
@@ -31,7 +44,7 @@ function create_new() {
                                 'prn_apps' => array(
                                     'required' => true
                                 ),
-                                'prfund_agency' => array(
+                                'prfun_agency' => array(
                                     'required' => true
                                 ),
                                 'prsurvey' => array(
@@ -42,21 +55,23 @@ function create_new() {
 
                             if ($validation->passed()) {
                                 try{
-                                    $insert_pro = $db->insert('Program', array(
+                                    $insert_pro = $db->insert('program', array(
                                         'prn_apps' => input::get('prn_apps'),
-                                        'prfund_agency' => input::get('prfund_agency'),
+                                        'prfun_agency' => input::get('prfun_agency'),
                                         'prsurvey' => input::get('prsurvey'),
                                         'prdescription' => input::get('prdescription'),
                                         'prcost' => input::get('prcost'),
                                         'prlocation' => input::get('prlocation'),
-                                        'preligibility' => input::get('preligibility'),
-                                        'prdateline' => input::get('prdateline'),
+                                        'prelegibility' => input::get('preligibility'),
+                                        'prdeadline' => input::get('prdeadline'),
+                                        'prstartdate' => input::get('prstartdate'),
+                                        'prawardamount' => input::get('prawardamount'),
                                     ));
 
                                 } catch(Exeception $e){
                                     die($e->getMessage());
                                 }
-                                Redirect::to('/new_program');
+                                Redirect::to('/admin-new-program');
 
                             } else {
                                 $validationError = Display::FlashMessages($validation->errors(),'error');
@@ -80,15 +95,11 @@ function program_id(){
 function get_program($id){
     $db = DB::getInstance();
 
-    $qry = $db->get('Program', array(
+    $qry = $db->get('program', array(
         'prid', '=', $id
     ));
 
-    if(!$qry->count()){
-        return null;
-    }
-
-    return $qry->first();
+    return ($qry->count()) ? $qry->first() : null;
 }
 
 function update_program($pid) {
@@ -103,21 +114,23 @@ function update_program($pid) {
 
                             if ($validation->passed()) {
                                 try{
-                                    $update = $db->update('Program', 'prid', $pid, array(
+                                    $update = $db->update('program', 'prid', $pid, array(
                                         'prn_apps' => input::get('prn_apps'),
-                                        'prfund_agency' => input::get('prfund_agency'),
+                                        'prfun_agency' => input::get('prfun_agency'),
                                         'prsurvey' => input::get('prsurvey'),
                                         'prdescription' => input::get('prdescription'),
                                         'prcost' => input::get('prcost'),
                                         'prlocation' => input::get('prlocation'),
-                                        'preligibility' => input::get('preligibility'),
-                                        'prdateline' => input::get('prdateline'),
+                                        'prelegibility' => input::get('preligibility'),
+                                        'prdeadline' => input::get('prdeadline'),
+                                        'prstartdate' => input::get('prstartdate'),
+                                        'prawardamount' => input::get('prawardamount'),
                                     ));
 
                                 } catch(Exeception $e){
                                     die($e->getMessage());
                                 }
-                                Redirect::to('/edit_program?pid='.$pid);
+                                Redirect::to('/admin-edit-program?pid='.$pid);
 
                             } else {
                                 $validationError = Display::FlashMessages($validation->errors(),'error');

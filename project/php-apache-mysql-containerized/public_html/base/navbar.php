@@ -1,6 +1,6 @@
 <div class="content-fluid holder-nav">
     <div class="content">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                 <li class="nav-item active">
@@ -10,7 +10,7 @@
                     <a class="nav-link" href="/programs">Programs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#status">My Status</a>
+                    <a class="nav-link" href="/mystatus">My Status</a>
                 </li>
 
                 <?php $user = new User(); ?>

@@ -20,4 +20,23 @@ function get_footer(){
     require_once 'footer.php';
 }
 
+// Admin
+
+function get_adminheader(){
+    require_once 'admin_header.php';
+}
+
+function get_admincontent(){
+    require_once 'admin_content.php';
+}
+
+function get_adminnavbar(){
+    require_once 'admin_navbar.php';
+}
+
+function get_adminfooter(){
+    require_once 'admin_footer.php';
+}
+
+
 ?>

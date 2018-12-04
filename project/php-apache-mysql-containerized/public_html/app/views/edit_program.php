@@ -1,6 +1,7 @@
 <?php
     $pid = program_id();
     needs_login();
+    requires_admin();
     update_program($pid);
     get_header();
     get_navbar();
@@ -55,7 +56,7 @@
 
                 <input type="hidden" name="token" value="<?php echo Token::generate() ?>">
 
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Edit</button>
         </form>
         </div>
     </div>
