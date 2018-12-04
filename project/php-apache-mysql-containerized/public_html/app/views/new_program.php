@@ -45,10 +45,20 @@
                     <label for="preligibility"> Eligibility:</label>
                     <input class="form-control" type="text" id="preligibility" name="preligibility">
                 </div>
+                
+                <div class="form-group">
+                    <label for="prawardamount"> Award Amount:</label>
+                    <input class="form-control" type="text" id="prawardamount" name="prawardamount" value="<?php echo $prm->prawardamount ?>">
+                </div>
 
                 <div class="form-group">
-                    <label for="prdateline"> Date Line:</label>
-                    <input class="form-control" type="text" id="prdateline" name="prdateline">
+                    <label for="prstartdate"> Start Line:</label>
+                    <input class="form-control" type="text" id="prstartdate" name="prstartdate" value="<?php echo $prm->prstartdate ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="prdeadline"> Dead Line:</label>
+                    <input class="form-control" type="text" id="prdeadline" name="prdeadline" value="<?php echo $prm->prdeadline ?>">
                 </div>
 
                 <input type="hidden" name="token" value="<?php echo Token::generate() ?>">

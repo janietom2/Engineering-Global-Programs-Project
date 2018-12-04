@@ -1,19 +1,21 @@
 <?php
     needs_login();
     $id = program_id();
-    create_new();
+    $user = new User();
+    create_new($user->data()->pid, $id);
+    // insert_media();
     get_header();
     get_navbar();
     get_content();
-?>
 
-    <?php $program = get_program($id); ?>
+?>
+    
     <div class="row">
         <div class="col-md-4 offset-md-4">
-
-        <?php if(alreadyApplied($id)): ?>
-            <form method="POST" action="/new_program">
-    
+        <?php $user = new User(); ?>
+        <?php if(!alreadyApplied($id, $user->data()->pid)): ?>
+            <form method="POST" action="/new_application?pid=<?= $id ?>" enctype = "multipart/form-data">
+                    <?php $program = get_program($id); ?>
                     <h1>Application for: <?= $program->prfun_agency ?></h1>
 
                     <div class="form-group">
@@ -30,7 +32,7 @@
 
                         <div class="form-group">
                             <label for="prcost"> Essay and Images:</label>
-                            <input class="form-control" type="file" id="mediafiles" name="mediafiles">
+                            <input class="form-control" type="file" name="image">
                         </div>
 
                         <input type="hidden" name="token" value="<?php echo Token::generate() ?>">
@@ -40,7 +42,7 @@
             </form>
         <?php else: ?>
             <h1>Application for: <?= $program->prfun_agency ?></h1>
-            <p>You already applied! You can see your application status <a href="#">here</a></p>
+            <p>You already applied!</p> <p>You can see your application status <a href="#">here</a></p>
         <?php endif; ?>
         </div>
     </div>
