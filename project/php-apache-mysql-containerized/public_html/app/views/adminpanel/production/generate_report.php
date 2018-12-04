@@ -8,7 +8,9 @@
 ?>
     <h1>Generate Report</h1>
 
-    
+    <div class="row">
+        
+    </div>
 
 <?php
     get_adminfooter();

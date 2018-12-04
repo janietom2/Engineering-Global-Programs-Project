@@ -47,7 +47,6 @@
                   <li><a><i class="fa fa-bar-chart-o"></i> Reports <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/generate-report">Generate</a></li>
-                      <li><a href="tables_dynamic.html">Saved Reports</a></li>
                     </ul>
                   </li>
                 <!-- <li><a><i class="fa fa-bar-chart-o"></i> Users <span class="fa fa-chevron-down"></span></a>

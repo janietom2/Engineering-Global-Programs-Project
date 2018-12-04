@@ -10,7 +10,6 @@ function needs_login(){
 }
 
 function insert_media(){
-    // echo "test";
     
     if(isset($_FILES['image'])){
         echo "passed img";
