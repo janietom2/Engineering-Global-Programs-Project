@@ -1,6 +1,6 @@
     </div> <!-- /container | content -->
     <div id="footer">
-        <p class="text-center">Footer content goes here!</p>
+        <p class="text-center">The University Of Texas At El Paso 2018</p>
     </div>
 </body>
 <!-- Scripts -->

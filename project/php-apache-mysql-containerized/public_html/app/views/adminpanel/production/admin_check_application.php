@@ -1,5 +1,6 @@
 <?php 
     needs_login();
+    requires_admin();
     $id = program_id();
     approval_update($id);
     get_adminheader();
@@ -31,7 +32,7 @@
                  <li><b>Fund Agency:</b></li>
                  - <?= $program->prfun_agency ?>
                  <li><b>Essay Link File:</b></li>
-                 - <?= $program->apessay ?>
+                 - <a target="_blank" href="./upload/<?= $program->apessay ?>"><?= $program->apessay ?></a>
                  <li><b>LinkedIn:</b></li>
                  - <?= $program->aplinkedin ?>
                  <li><b>Status:</b></li>
