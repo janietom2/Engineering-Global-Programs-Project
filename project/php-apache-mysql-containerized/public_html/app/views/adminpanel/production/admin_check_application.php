@@ -1,5 +1,6 @@
 <?php 
     needs_login();
+    requires_admin();
     $id = program_id();
     approval_update($id);
     get_adminheader();

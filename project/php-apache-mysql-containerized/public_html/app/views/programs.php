@@ -4,13 +4,6 @@
     get_navbar();
     get_content();
 ?>
-    <div class="content button-wrapper">
-        <div class="row">
-            <div class="col-md-3">
-                <?php if(ifAdmin()): ?><a href="/new_program"><button class="btn btn-primary">New Program</button></a><?php endif;?>
-            </div>
-        </div>
-    </div>
 
     <h1>Available Programs</h1>
 

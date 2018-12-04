@@ -85,6 +85,10 @@ switch ($request) {
         require_once './controllers/applications.php';
         require __DIR__ . '/app/views/adminpanel/production/admin_home.php';
         break;
+    case '/generate-report':
+        require_once './controllers/reports.php';
+        require __DIR__ . '/app/views/adminpanel/production/generate_report.php';
+        break;
     default: 
         require __DIR__ . '/app/views/404.php';
         break;
